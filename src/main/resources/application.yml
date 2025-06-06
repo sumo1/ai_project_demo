@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+
+# Actuator 监控配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env,beans,mappings
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+llm:
+  ali:
+    api-key: YOUR_ALI_API_KEY
+    endpoint: https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation

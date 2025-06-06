@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>文生页面 Demo</title>
+</head>
+<body>
+    <h1>生成页面展示</h1>
+    <input type="text" id="prompt" placeholder="请输入页面描述" />
+    <button onclick="generate()">生成页面</button>
+    <div id="output"></div>
+
+    <script>
+        async function generate() {
+            const prompt = document.getElementById('prompt').value;
+            const res = await fetch('/api/page/render', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt })
+            });
+            const data = await res.json();
+            document.getElementById('output').innerHTML = data.result;
+        }
+    </script>
+</body>
+</html>
